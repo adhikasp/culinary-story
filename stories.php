@@ -12,13 +12,24 @@ catch (PDOEXCEPTION $e) {
 	echo $e->getMessage();
 }
 
+// Inserting new review to database
+if($_POST['nama_rm']) {
+    $input = [];
+    foreach ($_POST as $key => $value) {
+	    $input[$key] = htmlspecialchars($value);
+    }
+
+    $stmt = $db->prepare("INSERT INTO restaurant_reviews (nama_rm,review_rm) VALUES (:nama_rm,:review_rm)");
+    $q    = $db->prepare($stmt);
+    $q->execute([':nama_rm' => $input['nama_rm'],
+                 ':review_rm' => $input['review_rm']]);
+}
+
+// Get all the review from database
+// For views
 $stmt = $db->prepare("SELECET * FROM restaurant_reviews");
 $reviews = $db->execute();
 
-$input = [];
-foreach ($_POST as $key => $value) {
-	$input[$key] = htmlspecialchars($value);
-}
 ?>
 
 <!DOCTYPE html>
