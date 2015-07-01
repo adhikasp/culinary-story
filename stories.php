@@ -2,8 +2,8 @@
 
 $dbHostName   = 'localhost';
 $dbName       = 'kulinare_story';
-$dbUserName   = 'root';
-$dbUserPasswd = 'denita';
+$dbUserName   = 'kulinare';
+$dbUserPasswd = 'makananEnakSedunia';
 
 try {
 	$db = new PDO("mysql:host=$dbHostName;dbname=$dbName", $dbUserName, $dbUserPasswd);
